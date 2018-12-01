@@ -14,7 +14,6 @@ function loadMap(){
 }
 
 function setupMapData(map_data){
-//    [[35.6763257, 139.6993177, "Meiji Shrine"],[35.7101456, 139.8105814, "Skytree"],[35.6950532, 139.7017945, "Godzilla Head"]]
     var latitude = [];
     var longitude = [];
     var desc = [];
@@ -39,17 +38,17 @@ return [{
 }
 
 function findCenter(coor){
-    var minLatitude = coor[0][0];
-    var minLongitude = coor[0][1];
-    var maxLatitude = coor[0][0];
-    var maxLongitude = coor[0][1];
+    var minLatitude = coor[3][3];
+    var minLongitude = coor[3][4];
+    var maxLatitude = coor[3][3];
+    var maxLongitude = coor[3][4];
     
     for (var i of coor){
         //ternary conditionals make this easier
-        minLatitude = i[0] < minLatitude? i[0]:minLatitude;
-        minLongitude = i[1] < minLongitude? i[1]:minLongitude;
-        maxLatitude = i[0] > maxLatitude? i[0]:maxLatitude;
-        maxLongitude = i[1] > maxLongitude? i[1]:maxLongitude;
+        minLatitude = i[3] < minLatitude? i[3]:minLatitude;
+        minLongitude = i[4] < minLongitude? i[4]:minLongitude;
+        maxLatitude = i[3] > maxLatitude? i[3]:maxLatitude;
+        maxLongitude = i[4] > maxLongitude? i[4]:maxLongitude;
     }
 
     return [(minLatitude + maxLatitude) / 2,(minLongitude + maxLongitude) / 2];
@@ -58,10 +57,10 @@ function findCenter(coor){
 function setupMapLayout(layout){
   return {"mapbox":{
             "style":"satellite-streets",
-            "zoom":11,
+            "zoom":5,
             "center":{
-                "lat":findCenter(layout)[0],
-                "lon":findCenter(layout)[1]
+                "lat":findCenter(layout)[3],
+                "lon":findCenter(layout)[4]
             }
         }
     };

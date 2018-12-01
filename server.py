@@ -1,3 +1,19 @@
+from flask import Flask, request, render_template
+import bikes
+
+app = Flask(__name__)
+
+@app.route('/')
+def server_static_index():
+    return render_template('index.html')
+    
+@app.route('/bikes')
+def server_static_bike():
+    return bikes.get_bike_data("https://feeds.citibikenyc.com/stations/stations.json")
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port = 8080, debug=True)
+    
 #from flask import Flask, request
 #import tickets
 #
@@ -41,18 +57,3 @@
 #if __name__ == '__main__':
 #    app.run(host='0.0.0.0', port = 8080, debug=True)
 
-from flask import Flask, request, render_template
-import bikes
-
-app = Flask(__name__)
-
-@app.route('/')
-def server_static_index():
-    return render_template('index.html')
-    
-@app.route('/bikes')
-def server_static_bike():
-    return bikes.get_bike_data("https://feeds.citibikenyc.com/stations/stations.json")
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port = 8080, debug=True)
