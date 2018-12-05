@@ -7,5 +7,5 @@ def get_bike_data(url):
 
     for station in data["stationBeanList"]:
         if station.get("statusValue") != "Not In Service":
-            stationList.append([int(station.get('id')), station.get('stationName'), int(station.get("availableDocks")), float(station.get("latitude")), float(station.get("longitude")), int(station.get("availableBikes")), station.get("lastCommunicationTime")])
+            stationList.append([int(station.get('id')), station.get('stationName'), int(station.get("availableDocks")), float(station.get("latitude")), float(station.get("longitude")), int(station.get("availableBikes")), station.get("lastCommunicationTime"), int(station.get("totalDocks"))])
     return json.dumps(stationList)
